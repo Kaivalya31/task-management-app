@@ -1,0 +1,23 @@
+spring:
+  sql:
+    init:
+      schema-locations: classpath:schema.sql
+  datasource:
+    url: jdbc:postgresql://localhost:5432/task_management_app
+    username: admin
+    password: password
+    initialization-mode: always
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  mail:
+    host: localhost
+    port: 1025
+    username:
+    password:
+    properties:
+      mail:
+        smtp:
+          auth: false
