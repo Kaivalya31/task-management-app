@@ -2,6 +2,17 @@
 # Task Management API Documentation
 
 This API provides endpoints for managing users and tasks, including user registration & authentication along with task creation, approvals, and comments.
+---
+
+## Steps to run the application
+### 1. Run the docker-compose.yaml file from the project directory using the command "docker-compose up -d". This will spin up the Postgre and MailHog containers.
+### 2. Run the application by executing the TaskManagementApplication.main().
+
+---
+
+## Steps to stop the application
+### 1. Shut down the containers using the command "docker-compose down" from the project directory. This will stop the containers.
+### 2. Stop the application.
 
 ---
 
