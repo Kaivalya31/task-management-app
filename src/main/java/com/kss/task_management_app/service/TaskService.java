@@ -51,32 +51,7 @@ public class TaskService {
 
     //adds approver to the task and approval entity to approval
     public Task addApprover(Long taskId, Long approverId) {
-        /*Task task = taskRepository.findById(taskId).orElseThrow(() -> new RuntimeException("Task not found"));
-        User approver = userService.getUserById(approverId);
-
-        Approval approval = new Approval();
-        approval.setTask(task);
-        approval.setApprover(approver);
-        approval.setStatus(false);
-
-        Approval savedApproval = approvalService.addApproval(approval, taskId, approverId);
-
-        //update task iff a new approver has been added
-        Task savedTask = null;
-        if(savedApproval != null){
-            List<Approval> currentTaskApprovals = task.getApprovals();
-            if(currentTaskApprovals == null){
-                currentTaskApprovals = new ArrayList<>();
-            }
-            currentTaskApprovals.add(savedApproval);
-            task.setApprovals(currentTaskApprovals);
-            savedTask = taskRepository.save(task);
-            emailService.notifyApproverOfTask(approver, savedTask);
-        }
-
-        return savedTask;*/
-
-        Task task = taskRepository.findById(taskId)
+       Task task = taskRepository.findById(taskId)
                 .orElseThrow(() -> new TaskNotFoundException("Task not found"));
 
         User approver = userService.getUserById(approverId);
@@ -124,48 +99,6 @@ public class TaskService {
     }
 
     public String approveTask(Long taskId, Long approverId) {
-        /*Optional<Task> taskOptional = taskRepository.findById(taskId);
-        if (taskOptional.isEmpty()) {
-            return "not found";
-        }
-
-        Task task = taskOptional.get();
-        if (task.getCreator().getId().equals(approverId)) {
-            return "creator";
-        }
-
-        Optional<Approval> existingApproval = approvalService.getApprovalByTaskIdAndApproverId(taskId, approverId);
-        if(existingApproval.isEmpty()){
-            return "unauthorized approver";
-        }
-
-        if (existingApproval.get().getStatus()) {
-            return "approved";
-        }
-
-        existingApproval.get().setStatus(true);
-        existingApproval.get().setApprovedAt(LocalDateTime.now());
-        Approval updatedApproval = approvalService.updateApproval(existingApproval.get());
-
-        //update approval count in the task
-        if(updatedApproval != null){
-            task.setApprovalCount(task.getApprovalCount() + 1);
-        }
-
-        if (task.getApprovalCount() >= 3) {
-            task.setStatus("APPROVED");
-            for(Approval approval : task.getApprovals()){
-                User approver = approval.getApprover();
-                emailService.notifyTaskApproved(approver, task);
-            }
-        }
-
-        emailService.notifyCreatorOfApproval(task, approverId);
-
-        taskRepository.save(task);
-
-        return "Task approved successfully";*/
-
         Task task = taskRepository.findById(taskId)
                 .orElseThrow(() -> new TaskNotFoundException("Task not found"));
 
