@@ -3,7 +3,9 @@ package com.kss.task_management_app.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -12,6 +14,8 @@ import java.time.LocalDateTime;
 @Table(name = "comments")
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Comment {
 
     @Id
